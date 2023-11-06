@@ -17,12 +17,18 @@ from loss import TripletLoss
 from triplet_selector import BatchHardTripletSelector
 from batch_sampler import BatchSampler
 from datasets.Market1501 import Market1501
+from datasets.Birds525 import Birds525
 from optimizer import AdamOptimWrapper
 from logger import logger
+import argparse
 
 
 
 def train():
+    argument_parser = argparse.ArgumentParser()
+    argument_parser.add_argument('dataset_name', help='birds-525 | market-1501')
+    args = argument_parser.parse_args()
+
     ## setup
     torch.multiprocessing.set_sharing_strategy('file_system')
     if not os.path.exists('./res'): os.makedirs('./res')
@@ -39,7 +45,12 @@ def train():
 
     ## dataloader
     selector = BatchHardTripletSelector()
-    ds = Market1501('datasets/Market-1501-v15.09.15/bounding_box_train', is_train = True)
+    if args.dataset_name == 'market-1501':
+        ds = Market1501('datasets/Market-1501-v15.09.15/bounding_box_train', is_train = True)
+    elif args.dataset_name == 'birds-525':
+        ds = Birds525('datasets/train', is_train=True)
+    else:
+        raise RuntimeError(f'Unknown dataset name {args.dataset_name}')
     sampler = BatchSampler(ds, 18, 4)
     dl = DataLoader(ds, batch_sampler = sampler, num_workers = 4)
     diter = iter(dl)
