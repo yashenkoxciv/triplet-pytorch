@@ -88,7 +88,8 @@ def train():
             t_start = t_end
 
         count += 1
-        if count == 25000: break
+        #if count == 25000: break
+        if count == 1000: break
 
     ## dump model
     logger.info('saving trained model')
