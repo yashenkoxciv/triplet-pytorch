@@ -1,3 +1,7 @@
+### Colab version
+It works (on 11-07-2023) using console on Google Colab. Base commit is b32f5df.
+Python version is Python 3.10.12
+
 # triplet-ReID-pytorch
 This is a simple implementation of the algorithm proposed in paper [In Defense of the Triplet Loss for Person Re-Identification](https://arxiv.org/abs/1703.07737).
 
@@ -12,6 +16,13 @@ Run the script of ```datasets/download_market1501.sh``` to download and uncompre
     $ cd triplet-reid-pytorch/datasets
     $ sh download_market1501.sh 
 ```
+
+UPD: the dataset can not be downloaded because host is unreachable
+Use this links:
+
+https://zheng-lab.cecs.anu.edu.au/Project/project_reid.html
+
+https://drive.google.com/file/d/0B8-rUzbwVRk0c054eEozWG9COHM/view?usp=sharing&resourcekey=0-8nyl7K9_x37HlQm34MmrYQ
 
 ### train the model
 * To train on the Market1501 dataset, just run the training script:  
