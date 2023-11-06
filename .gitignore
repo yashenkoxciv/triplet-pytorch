@@ -9,3 +9,4 @@
 /__pycache__/
 train.log
 emb_eval.sh
+.DS_Store
