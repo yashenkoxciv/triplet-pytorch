@@ -29,6 +29,7 @@ https://drive.google.com/file/d/0B8-rUzbwVRk0c054eEozWG9COHM/view?usp=sharing&re
 ```
     $ cd triplet-reid-pytorch
     $ python3 train.py
+    $ python3 train.py birds-525
 ```
 This will train an embedder model based on ResNet-50. The trained model will be stored in the path of ```/res/model.pkl```.
 
@@ -39,10 +40,24 @@ This will train an embedder model based on ResNet-50. The trained model will be 
     $ python3 embed.py \
       --store_pth ./res/emb_gallery.pkl \
       --data_pth datasets/Market-1501-v15.09.15/bounding_box_test
+      --dataset_name market-1501
+    
+    $ python3 embed.py \
+      --store_pth ./res/emb_gallery.pkl \
+      --data_pth datasets/test
+      --dataset_name birds-525
+
+
 
     $ python3 embed.py \
       --store_pth ./res/emb_query.pkl \
       --data_pth datasets/Market-1501-v15.09.15/query
+      --dataset_name market-1501
+    
+    $ python3 embed.py \
+      --store_pth ./res/emb_query.pkl \
+      --data_pth datasets/valid
+      --dataset_name birds-525
 ```
 These scripts will use the trained embedder to embed the gallery and query set of Market1501, and store the embeddings as ```/res/embd_gallery.pkl``` and ```/res/emb_query.pkl```.
 

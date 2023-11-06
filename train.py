@@ -45,6 +45,7 @@ def train():
 
     ## dataloader
     selector = BatchHardTripletSelector()
+    logger.info(f'Dataset {args.dataset_name}')
     if args.dataset_name == 'market-1501':
         ds = Market1501('datasets/Market-1501-v15.09.15/bounding_box_train', is_train = True)
     elif args.dataset_name == 'birds-525':

@@ -15,6 +15,7 @@ import cv2
 
 from backbone import EmbedNetwork
 from datasets.Market1501 import Market1501
+from datasets.Birds525 import Birds525
 
 
 torch.multiprocessing.set_sharing_strategy('file_system')
@@ -35,6 +36,10 @@ def parse_args():
             required = True,
             help = 'path that the raw images are stored',
             )
+    parse.add_argument(
+            '--dataset_name',
+            help='birds-525 | market-1501'
+    )
 
     return parse.parse_args()
 
@@ -55,7 +60,10 @@ def embed(args):
 
     ## load gallery dataset
     batchsize = 32
-    ds = Market1501(args.data_pth, is_train = False)
+    if args.dataset_name == 'market-1501':
+        ds = Market1501(args.data_pth, is_train = False)
+    elif args.dataset_name == 'birds-525':
+        ds = Birds525('datasets/test', is_train=False)
     dl = DataLoader(ds, batch_size = batchsize, drop_last = False, num_workers = 4)
 
 
