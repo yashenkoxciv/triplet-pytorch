@@ -63,7 +63,7 @@ def embed(args):
     if args.dataset_name == 'market-1501':
         ds = Market1501(args.data_pth, is_train = False)
     elif args.dataset_name == 'birds-525':
-        ds = Birds525('datasets/test', is_train=False)
+        ds = Birds525(args.data_pth, is_train=False)
     dl = DataLoader(ds, batch_size = batchsize, drop_last = False, num_workers = 4)
 
 
